@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SimpleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,4 +21,10 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+});
+
+
+Route::controller(SimpleController::class)->group(function() {
+    Route::get('editor', 'index')->name('index');
+    Route::post('editor/request','getAll')->name('getAll');
 });
